@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 3:58:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bloodbank.entites.Staff" table="staff" catalog="blood_bank" optimistic-lock="version">
+        <id name="empId" type="java.lang.Integer">
+            <column name="EMP_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empJobs" class="bloodbank.entites.EmpJobs" fetch="select">
+            <column name="Job_id" not-null="true" />
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column name="firstName" length="45" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" length="45" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="Gender" length="10" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="Address" not-null="true" />
+        </property>
+        <property name="bloodType" type="string">
+            <column name="Blood_Type" length="45" not-null="true" />
+        </property>
+        <property name="natId" type="string">
+            <column name="Nat_id" length="45" not-null="true" />
+        </property>
+        <property name="dateOfBirth" type="date">
+            <column name="Date_of_birth" length="10" not-null="true" />
+        </property>
+        <property name="primaryNumber" type="string">
+            <column name="Primary_Number" length="45" not-null="true" />
+        </property>
+        <property name="secondaryNumber" type="string">
+            <column name="Secondary_Number" length="45" />
+        </property>
+        <property name="salary" type="string">
+            <column name="Salary" length="100" not-null="true" />
+        </property>
+        <set name="donorses" table="donors" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Doctor_id" not-null="true" />
+            </key>
+            <one-to-many class="bloodbank.entites.Donors" />
+        </set>
+        <set name="bloodTransactionses" table="blood_transactions" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Doctor_id" not-null="true" />
+            </key>
+            <one-to-many class="bloodbank.entites.BloodTransactions" />
+        </set>
+        <set name="patientses" table="patients" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Doctor_id" not-null="true" />
+            </key>
+            <one-to-many class="bloodbank.entites.Patients" />
+        </set>
+        <set name="bloodStocks" table="blood_stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Doctor_id" not-null="true" />
+            </key>
+            <one-to-many class="bloodbank.entites.BloodStock" />
+        </set>
+    </class>
+</hibernate-mapping>

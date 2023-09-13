@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 3:58:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bloodbank.entites.Diseases" table="diseases" catalog="blood_bank" optimistic-lock="version">
+        <id name="diseaseId" type="java.lang.Integer">
+            <column name="Disease_id" />
+            <generator class="identity" />
+        </id>
+        <property name="diseaseName" type="string">
+            <column name="Disease_Name" not-null="true" />
+        </property>
+        <set name="donorses" table="donor_history" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Disease_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="bloodbank.entites.Donors">
+                <column name="Donor_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="patientHistories" table="patient_history" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Disease_id" not-null="true" />
+            </key>
+            <one-to-many class="bloodbank.entites.PatientHistory" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 3:58:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bloodbank.entites.PatientHistory" table="patient_history" catalog="blood_bank" optimistic-lock="version">
+        <composite-id name="id" class="bloodbank.entites.PatientHistoryId">
+            <key-property name="patientId" type="int">
+                <column name="Patient_id" />
+            </key-property>
+            <key-property name="diseaseId" type="int">
+                <column name="Disease_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="diseases" class="bloodbank.entites.Diseases" update="false" insert="false" fetch="select">
+            <column name="Disease_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="patients" class="bloodbank.entites.Patients" update="false" insert="false" fetch="select">
+            <column name="Patient_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
