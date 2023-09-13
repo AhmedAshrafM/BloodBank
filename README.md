@@ -1,5 +1,3 @@
-Creating comprehensive documentation for a project's API is an essential step to help users understand how to use your application. Based on the provided code snippets and assuming that your project includes various servlets and DAO classes, I'll provide you with a template for a GitHub-friendly documentation structure. Please customize it further based on your specific project's features and endpoints.
-
 # Blood Bank Web Application API Documentation
 
 ## Introduction
